@@ -1,0 +1,23 @@
+<%= form_for(@restaurant) do |i| %>
+
+  <div class="field">
+    <%= i.label :name %><br/>
+    <%= i.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= i.label :capacity %><br/>
+    <%= i.number_field :capacity %>
+  </div>
+
+  <div class="field">
+    <%= i.label :photo %><br/>
+    <%= i.text_field :photo %>
+  </div>
+
+
+  <div class="action">
+    <%= i.submit "Create Restaurant" %>
+  </div>
+
+ <% end %>
