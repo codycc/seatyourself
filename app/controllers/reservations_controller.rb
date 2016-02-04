@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+  before_action :load_parent
   def index
     @reservations = Reservation.all
   end
@@ -10,11 +11,13 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     if @reservation.save
-      redirect_to reservations_path
+      redirect_to restaurant_path(@restaurant)
+
     else
       render 'new'
     end
   end
+
 
   def show
     @reservation = Reservation.find(params[:id])
@@ -45,6 +48,10 @@ class ReservationsController < ApplicationController
 
   def reservation_params
     params.require(:reservation).permit(:time, :party_size)
+  end
+
+  def load_parent
+    @restaurant = Restaurant.find(params[:restaurant_id])
   end
 
 end

@@ -2,3 +2,21 @@
 <p>Find me in app/views/restaurants/show.html.erb</p>
 
 <%= @restaurant.name %>
+
+<%= form_for ([@restaurant, @reservation]) do |i| %>
+
+  <div class="field">
+    <%= i.label :time %><br/>
+    <%= i.text_field :time %>
+  </div>
+
+  <div class="field">
+    <%= i.label :party_size %><br/>
+    <%= i.number_field :party_size %>
+  </div>
+
+  <div class="action">
+    <%= i.submit "Create Reservation" %>
+  </div>
+
+ <% end %>
