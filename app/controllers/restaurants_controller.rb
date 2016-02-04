@@ -37,9 +37,8 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
 
-
     @reservation = @restaurant.reservations.build
-
+    @review = @restaurant.reviews.build
   end
 
   def destroy
@@ -50,6 +49,7 @@ class RestaurantsController < ApplicationController
   end
 
   private
+
   def restaurant_params
     params.require(:restaurant).permit(:name, :capacity, :photo)
   end

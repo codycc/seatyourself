@@ -1,8 +1,8 @@
-<h1>Restaurants#show</h1>
-<p>Find me in app/views/restaurants/show.html.erb</p>
-
-<%= @restaurant.name %>
+<h1><%= @restaurant.name %></h1>
+<p><%= image_tag @restaurant.photo, {size: "320"} %></p>
 <% if current_user %>
+
+<h4>Make a reservation</h4>
 
 <%= form_for ([@restaurant, @reservation]) do |i| %>
 
@@ -19,10 +19,54 @@
   <div class="action">
     <%= i.submit "Create Reservation" %>
   </div>
-
-
  <% end %>
- 
+
  <% else %>
    <p>Please log in to create a reservation</p>
    <% end %>
+
+<!-- This is the review section -->
+
+<!-- <h3>Reviews</h3> -->
+
+<h4>Reviews for <%= @restaurant.name %></h4>
+
+<% @restaurant.reviews.each do |review| %>
+  <p>
+    <%= review.comment %>
+    <br>
+    <% if review.user != nil %>
+      <em> by <%= review.user.email %></em>
+      Added on: <%= review.created_at %>
+    <% end %>
+  </p>
+<% end %>
+
+<% if current_user %>
+  <h4>New review</h4>
+
+  <%= form_for([@restaurant, @review]) do |f| %>
+    <% if @review.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+        <ul>
+        <% @review.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :comment %><br />
+      <%= f.text_area :comment %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+
+<% else %>
+  <p>Please <%= link_to "log in", new_session_path %> to add a review.</p>
+<% end %>
