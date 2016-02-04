@@ -2,6 +2,7 @@
 <p>Find me in app/views/restaurants/show.html.erb</p>
 
 <%= @restaurant.name %>
+<% if current_user %>
 
 <%= form_for ([@restaurant, @reservation]) do |i| %>
 
@@ -19,4 +20,9 @@
     <%= i.submit "Create Reservation" %>
   </div>
 
+
  <% end %>
+ 
+ <% else %>
+   <p>Please log in to create a reservation</p>
+   <% end %>
