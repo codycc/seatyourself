@@ -1,28 +1,52 @@
-<h1>Restaurants#show</h1>
-<p>Find me in app/views/restaurants/show.html.erb</p>
 
-<%= @restaurant.name %>
-<% if current_user %>
+<div class="col-xs-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Reservation Info </h3>
+    </div>
+    <div class="panel-body">
+      <% if current_user %>
 
-<%= form_for ([@restaurant, @reservation]) do |i| %>
+      <%= form_for ([@restaurant, @reservation]) do |i| %>
 
-  <div class="field">
-    <%= i.label :time %><br/>
-    <%= i.text_field :time %>
+        <div class="field">
+          <%= i.label :time %><br/>
+          <%= i.text_field :time %>
+        </div>
+
+        <div class="field">
+          <%= i.label :party_size %><br/>
+          <%= i.number_field :party_size %>
+        </div>
+
+        <div class="action">
+          <%= i.submit "Create Reservation" %>
+
+        </div>
+
+
+
+
+       <% end %>
+
+       <% else %>
+         <p>Please log in to create a reservation</p>
+         <% end %>
+
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= i.label :party_size %><br/>
-    <%= i.number_field :party_size %>
+<div class="col-xs-5">
+  <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @restaurant.name %></h3>
   </div>
+  <div class="panel-body">
 
-  <div class="action">
-    <%= i.submit "Create Reservation" %>
+    <p><%= image_tag @restaurant.photo, {size: "400"} %></p>
+
+    <p>Available capacity:<p> <%= @restaurant.capacity %>
   </div>
-
-
- <% end %>
- 
- <% else %>
-   <p>Please log in to create a reservation</p>
-   <% end %>
+</div>
+</div>

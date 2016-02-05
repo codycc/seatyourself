@@ -1,2 +1,42 @@
-<%= @user.name %>
-<%= @user.email %> 
+<div class="container">
+  <div class="row">
+
+    <div class="col-xs-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+              Username: <%= @user.name %></BR>
+              Email: <%= @user.email %>
+          </div>
+      </div>
+    </div>
+
+  <div class="col-xs-4">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h1>RESERVATIONS</h1>
+        <% @user.reservations.order(created_at: :desc).each do |x|  %>
+          <ul>
+            <% @find = Restaurant.find(x.restaurant_id) %>
+            <li>Restaurant name: <%= @find.name %></li>
+                Time booked: <%= x.formatted_time %></br>
+                Party Size: <%= x.party_size %></br>
+          </ul>
+        <% end %>
+      </div>
+  </div>
+</div>
+
+
+<div class="col-xs-4">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      Something else can occupy this spot
+
+    </div>
+</div>
+</div>
+
+
+
+  </div>
+</div>

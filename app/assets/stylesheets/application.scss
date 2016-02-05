@@ -1,3 +1,48 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+
+.home-wrapper {
+  font-family:arial;
+
+}
+
+.photos {
+  padding:15px;
+
+}
+
+.rounded-image {
+  border-radius:5px;
+}
+
+#restaurant-header {
+  color:white;
+  font-family:sans-serif;
+
+  letter-spacing: 2px;
+  padding-bottom:15px;
+
+}
+
+#restauranttitle {
+  color:#111;
+  font-family:arial;
+  text-decoration:none;
+
+}
+
+body {
+
+  background-size:cover;
+  background:linear-gradient(
+      rgba(0,0,0,0.8),
+      rgba(0,0,0,0.8)
+      ),url("/background2.jpg")no-repeat center center fixed;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+
+
+
+}
