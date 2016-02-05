@@ -16,8 +16,7 @@
         <h1>RESERVATIONS</h1>
         <% @user.reservations.order(created_at: :desc).each do |x|  %>
           <ul>
-            <% @find = Restaurant.find(x.restaurant_id) %>
-            <li>Restaurant name: <%= @find.name %></li>
+            <li>Restaurant name: <%= x.restaurant.name %></li>
                 Time booked: <%= x.formatted_time %></br>
                 Party Size: <%= x.party_size %></br>
           </ul>
