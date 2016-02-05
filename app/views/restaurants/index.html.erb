@@ -1,7 +1,36 @@
-<h1>Restaurants</h1>
 
-<% @restaurants.each do |restaurant| %>
-<p><%= image_tag restaurant.photo, {size: "320"} %></p>
-<h2> <%= link_to "#{restaurant.name}", restaurant_path(restaurant) %></h2>
-<p> Capacity: <%= restaurant.capacity %> </p><br/>
-<% end %>
+<div class="home-wrapper">
+<div class="container">
+
+  <div class="row" >
+    <div class="col-xs-12">
+   <h1 id="restaurant-header">RESTAURANTS</h1>
+    <h4 id="restaurant-header">There are currently <%= Restaurant.all.length %> restaurant listed</h4>
+  </div>
+</div>
+
+
+  <% @restaurants.each do |restaurant| %>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        <h3  class="panel-title" > <h2 > <%= link_to "#{restaurant.name}", restaurant_path(restaurant) %></h2></h3>
+        </div>
+        <div class="panel-body"class="img-responsive">
+            <p ><%= image_tag restaurant.photo, {size: "320"} %></p>
+            <div class="col-xs-4">
+                <p> Capacity: <%= restaurant.capacity %> </p><br/>
+            </div>
+                <div class="col-xs-4 col-sm-offset-2" >
+              <%= link_to '<button type="button" class="btn btn-danger">Book Reservation</button>'.html_safe ,restaurant_path(restaurant) %>
+
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <% end %>
+
+
+</div>
+</div>

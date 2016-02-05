@@ -1,2 +1,41 @@
-<%= @user.name %>
-<%= @user.email %> 
+<div class="container">
+  <div class="row">
+
+    <div class="col-xs-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+              <%= @user.name %></BR>
+              <%= @user.email %>
+          </div>
+      </div>
+    </div>
+
+  <div class="col-xs-4">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <% @user.reservations.order(created_at: :desc).each do |x|  %>
+             <ul>
+               <li>Restaurant name: <%= x.restaurant.name %></li>
+                   Time booked: <%= x.formatted_time %></br>
+                   Party Size: <%= x.party_size %></br>
+             </ul>
+             <% end %>
+
+
+      </div>
+  </div>
+</div>
+
+
+<div class="col-xs-4">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      RESTAURANTS
+    </div>
+</div>
+</div>
+
+
+
+  </div>
+</div>
