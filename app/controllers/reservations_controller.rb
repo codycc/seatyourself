@@ -52,6 +52,7 @@ class ReservationsController < ApplicationController
   end
 
   def load_parent
+    
     @restaurant = Restaurant.find(params[:restaurant_id])
   end
 
