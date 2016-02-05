@@ -13,8 +13,15 @@
   <div class="col-xs-4">
     <div class="panel panel-default">
       <div class="panel-body">
-        <h1>RESERVATIONS</h1>
-        <%= current_user.reservations %>
+        <% @user.reservations.order(created_at: :desc).each do |x|  %>
+             <ul>
+               <li>Restaurant name: <%= x.restaurant.name %></li>
+                   Time booked: <%= x.formatted_time %></br>
+                   Party Size: <%= x.party_size %></br>
+             </ul>
+             <% end %>
+
+
       </div>
   </div>
 </div>
