@@ -9,18 +9,24 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
   end
 
+
+
   def create
-    @reservation = Reservation.new(reservation_params)
-    @reservation.user = current_user
-    @reservation.restaurant_id = @restaurant.id
-    if @reservation.save
-      redirect_to restaurant_path(@restaurant), notice: "Your reservation was created successfully"
+   @reservation = Reservation.new(reservation_params)
+   @reservation.user = current_user
+   @reservation.restaurant_id = @restaurant.id
 
-    else
 
+   if @restaurant.available?(@reservation.party_size, @reservation.time)
+      @restaurant.capacity = @restaurant.capacity -= @reservation.party_size
+     @restaurant.save
+     
+     @reservation.save
+     redirect_to restaurant_path(@restaurant), notice: "Your reservation was created successfully"
+   else
       render 'restaurants/show'
-    end
-  end
+   end
+ end
 
 
   def show

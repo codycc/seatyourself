@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true , uniqueness: true
 
 
-  has_many :reservations
   has_many :restaurants, through: :reservations
+  has_many :reservations
+  has_many :reviews
+  has_many :restaurants, through: :reviews
 end

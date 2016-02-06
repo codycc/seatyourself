@@ -31,7 +31,7 @@ class RestaurantsController < ApplicationController
         #when we add ui then put in flash notice
         render 'edit'
       end
-
+    
   end
 
   def show
@@ -39,6 +39,7 @@ class RestaurantsController < ApplicationController
 
 
     @reservation = @restaurant.reservations.build
+    @review = @restaurant.reviews.build
 
   end
 
