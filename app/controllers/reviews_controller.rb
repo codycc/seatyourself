@@ -22,6 +22,21 @@ class ReviewsController < ApplicationController
    @review.destroy
  end
 
+ def edit
+   @review = Review.find(params[:id])
+ end
+
+ def update
+   @review = Review.find(params[:id])
+       if @review.update_attributes(review_params)
+         redirect_to restaurants_path
+       else
+         #when we add ui then put in flash notice
+         render 'edit'
+       end
+
+   end
+
  private
 
    def review_params
