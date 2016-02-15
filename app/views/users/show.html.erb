@@ -34,7 +34,8 @@
         <ul>
           <li><em>Review for restaurant: </em><%= review.restaurant.name %></li>
           <em>Review comment: </em> <%= review.comment %></br>
-          <%= link_to 'edit comment', edit_restaurant_review_path(review.restaurant_id, review.id) %>
+          <%= link_to 'edit comment', edit_restaurant_review_path(review.restaurant_id, review.id) %></br>
+          <%= link_to 'delete comment', restaurant_review_url( review.restaurant_id, review.id ) , method: :delete, data:{confirm:"are you sure you want to delete this review"} %>
         </ul>
         <% end %>
     </div>
